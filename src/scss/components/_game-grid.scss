@@ -1,0 +1,81 @@
+.game-grid {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .wrapper {
+    display: grid;
+    grid-template-rows: 20vmin 20vmin 20vmin 20vmin;
+    grid-template-columns: 20vmin 20vmin 20vmin 20vmin;
+    gap: 2vmin;
+  }
+
+  &:hover {
+    .card {
+      .border {
+        opacity: 1;
+      }
+    }
+  }
+
+  .card {
+    background: $secondaryClr;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    padding: .6vmin;
+    border-radius: 1vmin;
+    position: relative;
+  
+    &::before,
+    .border {
+      content: "";
+      position: absolute;
+      background: radial-gradient(
+        34vmin 
+        circle at var(--mouse-x) var(--mouse-y),
+        rgba($white, .1),
+        transparent 40%
+      );
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      opacity: 0;
+      transition: .3s opacity;
+      z-index: 2;
+    }
+  
+    &::before {
+      z-index: 3;
+    }
+  
+    .border {
+      background: radial-gradient(
+        26vmin 
+        circle at var(--mouse-x) var(--mouse-y),
+        rgba($white, .15),
+        transparent 40%
+      );
+      z-index: 1;
+    }
+  
+    &:hover {
+      &::before {
+        opacity: 1;
+      }
+    }
+  
+    .content {
+      background: $black;
+      width: 100%;
+      height: 100%;
+      border-radius: 1vmin;
+      z-index: 2;
+      position: relative;
+    }
+  }
+}
