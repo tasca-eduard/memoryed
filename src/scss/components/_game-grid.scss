@@ -5,13 +5,6 @@
   justify-content: center;
   align-items: center;
 
-  .wrapper {
-    display: grid;
-    grid-template-rows: 20vmin 20vmin 20vmin;
-    grid-template-columns: 20vmin 20vmin 20vmin 20vmin;
-    gap: 1vmin;
-  }
-
   &:hover {
     .card {
       .border {
@@ -20,14 +13,21 @@
     }
   }
 
+  .wrapper {
+    display: grid;
+    grid-template-rows: 20vmin 20vmin 20vmin;
+    grid-template-columns: 20vmin 20vmin 20vmin 20vmin;
+    gap: 1vmin;
+  }
+
   .card {
-    background: $secondaryClr;
+    background: $black;
     display: flex;
     justify-content: center;
     align-items: center;
     outline: none;
     border: none;
-    padding: .6vmin;
+    padding: .4vmin;
     border-radius: .5vmin;
     position: relative;
   
@@ -48,11 +48,7 @@
       transition: .3s opacity;
       z-index: 2;
     }
-  
-    &::before {
-      z-index: 3;
-    }
-  
+    
     .border {
       background: radial-gradient(
         26vmin 
@@ -61,6 +57,10 @@
         transparent 40%
       );
       z-index: 1;
+    }
+  
+    &::before {
+      z-index: 3;
     }
   
     &:hover {
@@ -76,6 +76,13 @@
       border-radius: inherit;
       z-index: 2;
       position: relative;
+      color: $secondaryClr;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      font-size: 8vmin;
+      transition: .2s;
     }
   }
 }

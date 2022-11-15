@@ -1,5 +1,3 @@
-import { MouseEvent } from "react"
-
 interface Props {
   value: number
 }
