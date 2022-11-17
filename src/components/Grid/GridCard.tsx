@@ -1,16 +1,38 @@
 interface Props {
-  value: number
+  card: number,
+  value: number,
+  isRevealed: boolean
+  handleReveal: (index: number) => void
 }
 
 export default function GridCard({
-  value
+  value,
+  isRevealed,
+  card,
+  handleReveal
 }: Props) {
   return (
-    <button className="card">
-      <div className="content">
-        {value}
-      </div>
-      <div className="border"></div>
-    </button>
+    <>
+      {isRevealed ? (
+        <button 
+          className="card"
+        >
+          <div className="content">
+            {card}
+          </div>
+          <div className="border"></div>
+        </button>
+      ) : (
+        <button 
+          className="card"
+          onClick={() => handleReveal(value)}
+        >
+          <div className="content">
+          </div>
+        <div className="border"></div>
+        </button>
+      )}
+
+    </>
   )
 }
