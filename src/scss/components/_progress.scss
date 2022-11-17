@@ -1,0 +1,32 @@
+.progress {
+  width: 100vw;
+  height: 1vmin;
+  background: linear-gradient(
+    5deg,
+    $appBg,
+    $primaryClr
+  );
+  margin-bottom: 10vmin;
+  transform: skew(-5deg);
+  padding: .2vmin 0;
+  position: fixed;
+  top: 0;
+
+  .content {
+    background: $appBg;
+    border-radius: inherit;
+    height: 100%;
+  }
+
+  .current {
+    background: linear-gradient(
+      45deg,
+      $appBg,
+      $primaryClr
+    );
+    background-size: calc(100% + 10vmin) calc(100% + 10vmin);
+    border-radius: inherit;
+    height: 100%;
+    transition: 1s ease-in-out;
+  }
+}

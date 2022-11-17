@@ -1,9 +1,13 @@
 import { MouseEvent, useEffect, useState } from "react";
+import Progress from "../Progress/Progress";
 import GridCard from "./GridCard";
 
 type TCell = {
   index: number
 }
+
+export const NUMBER_OF_STEPS = 6;
+export const TIMEOUT_MS = 1000;
 
 export default function Grid() {
   const [grid, setGrid] = useState([
@@ -12,9 +16,13 @@ export default function Grid() {
     [3, 5, 6, 6]
   ].flat());
 
+  // board
   const [revealedGrid, setRevealedGrid] = useState<Array<boolean>>(new Array(grid.flat().length).fill(false));
   const [previousReveal, setPreviousReveal] = useState<TCell | undefined>();
   const [freezeBoard, setFreezeBoard] = useState(false);
+
+  // progress
+  const [step, setStep] = useState(0);
 
   function handleMouseMove(e: MouseEvent<HTMLDivElement>) {
     for (let card of document.getElementsByClassName("card") as any) {
@@ -47,8 +55,11 @@ export default function Grid() {
           tempRevealGrid[previousReveal.index] = false;
           setRevealedGrid([...tempRevealGrid]);
           setFreezeBoard(false);
-        }, 1000);
+        }, TIMEOUT_MS);
+      } else {
+        setStep(prev => prev + 1)
       }
+
       setPreviousReveal(undefined)
     } else {
       setPreviousReveal({
@@ -58,13 +69,11 @@ export default function Grid() {
   }
 
   function handleWin() {
-    const hasWon = revealedGrid.every(isRevealed => isRevealed);
-
     setTimeout(() => {
-      if (hasWon) {
+      if (step === NUMBER_OF_STEPS) {
         alert("fdfgfd")
       }
-    }, 1);
+    }, 1000);
   }
 
   useEffect(() => {
@@ -76,19 +85,25 @@ export default function Grid() {
       className="game-grid"
       onMouseMove={handleMouseMove}
     >
-      <div className="wrapper">
-        {grid.map((card, index) => {
-          return (
-            <GridCard
-              key={index}
-              value={index}
-              card={card}
-              isRevealed={revealedGrid[index]}
-              handleReveal={handleReveal}
-            />
-          )
-        })}
-      </div>
+      <>
+        <Progress 
+          step={step}
+        />
+        <h1>Memory Ed</h1>
+        <div className="wrapper">
+          {grid.map((card, index) => {
+            return (
+              <GridCard
+                key={index}
+                value={index}
+                card={card}
+                isRevealed={revealedGrid[index]}
+                handleReveal={handleReveal}
+              />
+            )
+          })}
+        </div>
+      </>
     </div>
   )
 }
