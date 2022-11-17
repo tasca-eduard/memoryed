@@ -50,6 +50,11 @@ export default function Grid() {
 
       if (previousRevealedCard !== revealedCard) {
         setFreezeBoard(true);
+
+        if (step > 0) {
+          setStep(prev => prev - 1);
+        }
+
         setTimeout(() => {
           tempRevealGrid[index] = false;
           tempRevealGrid[previousReveal.index] = false;
@@ -69,8 +74,10 @@ export default function Grid() {
   }
 
   function handleWin() {
+    const hasWon = revealedGrid.every(isRevealed => isRevealed);
+
     setTimeout(() => {
-      if (step === NUMBER_OF_STEPS) {
+      if (hasWon) {
         alert("fdfgfd")
       }
     }, 1000);

@@ -12,6 +12,7 @@ export default function Progress({
   return (
     <div className="progress">
       <div className="content">
+        <div className="score">Score: {step}</div>
         <div 
           className="current"
           style={{
