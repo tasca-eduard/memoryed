@@ -56,9 +56,9 @@
       content: "";
       position: absolute;
       background: radial-gradient(
-        18vmin 
+        12vmin 
         circle at var(--mouse-x) var(--mouse-y),
-        rgba($accent, .1),
+        rgba($accent, .2),
         transparent 60%
       );
       width: 100%;
@@ -73,7 +73,7 @@
       background: radial-gradient(
         36vmin 
         circle at var(--mouse-x) var(--mouse-y),
-        rgba($accent, .7),
+        rgba($accent, 1),
         transparent 40%
       );
       z-index: 1;
